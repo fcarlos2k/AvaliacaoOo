@@ -11,7 +11,7 @@ namespace AvaliacaoOo.PaymentMethod
     {
         public decimal MakePayment(decimal totalValue)
         {
-            return totalValue * 0.95m; // Desconto de 5%
+            return totalValue * 0.95m;
         }
     }
 }
