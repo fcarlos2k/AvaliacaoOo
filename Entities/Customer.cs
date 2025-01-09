@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AvaliacaoOo.Entities
 {
-    internal class Customer
+    public class Customer
     {
         int Id { get; set; }
         string Name { get; set; }

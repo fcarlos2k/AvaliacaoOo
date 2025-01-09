@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace AvaliacaoOo.Entities
 {
-    internal class Product
+    public class Product
     {
         int Id { get; set; }
         string Name { get; set; }
-        double Price { get; set; }
+        decimal Price { get; set; }
         int Quantity { get; set; }
-        public Product(int id, string name, double price, int quantity)
+        public Product(int id, string name, decimal price, int quantity)
         {
             Id = id;
             Name = name;
