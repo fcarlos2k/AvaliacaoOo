@@ -7,9 +7,9 @@ using AvaliacaoOo.Interfaces;
 
 namespace AvaliacaoOo.PaymentMethod
 {
-    public class Pix : IPaymentMethod
+    public class PaymentPix : IPaymentMethod
     {
-        public decimal MakePayment(decimal totalValue)
+        public decimal CalculateFinalValue(decimal totalValue)
         {
             return totalValue * 0.95m;
         }

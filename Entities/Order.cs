@@ -9,20 +9,25 @@ namespace AvaliacaoOo.Entities
 {
     public class Order
     {
-        public int Id { get; set; }
         public Customer Customer { get; set; }
-        public List<Product> Products { get; set; } = new List<Product>();
+        public List<(Product product, int qtd)> Itens { get; set; }
 
         public Order(Customer customer)
         {
             Customer = customer;
+            Itens = new List<(Product, int)>();
         }
 
-        public decimal finishPayment(IPaymentMethod paymentMethod)
+        public decimal FinishOrder(IPaymentMethod paymentMethod)
         {
-            decimal finalValue = Products.Sum(p => p.Preco);
-            decimal finalValue = formaPagamento.CalcularValor(valorBase);
-            return finalValue;
+            decimal totalValue = 0;
+
+            foreach (var item in Itens)
+            {
+                totalValue += item.product.Price * item.qtd;
+            }
+            return paymentMethod.CalculateFinalValue(totalValue);
         }
     }
 }
+

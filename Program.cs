@@ -1,5 +1,7 @@
 ﻿using System;
 using AvaliacaoOo.Entities;
+using AvaliacaoOo.Interfaces;
+using AvaliacaoOo.PaymentMethod;
 
 namespace AvaliacaoOo
 {
@@ -7,22 +9,22 @@ namespace AvaliacaoOo
     {
         static void Main(string[] args)
         {
-            // Criar um cliente
-            var customer = new Customer (1, "João da Silva");
+            var customer = new Customer(1, "Customer 01"); 
 
-            // Criar um pedido
-            var order = new Order();
-            pedido.Produtos.Add(new Produto(1, "Produto A", 10));
-            pedido.Produtos.Add(new Produto(2, "Produto B", 20));
+            var order = new Order(customer);
 
-            // Escolher a forma de pagamento (pode ser alterada para qualquer outra que implemente IPaymentMethod)
-            IFormaPagamento formaPagamento = new PixPagamento();
+            order.Itens.Add((new Product (1, "Produto A", 0), 1));
+            order.Itens.Add((new Product (2, "Produto B", 1000m),1));
+            order.Itens.Add((new Product (3, "Produto C", 0m),1)); 
 
-            // Concluir o pedido e obter o valor total
-            decimal valorTotal = pedido.Concluir(formaPagamento);
 
-            // Exibir o valor total
-            Console.WriteLine($"Valor total a ser pago: R$ {valorTotal}");
+            IPaymentMethod paymentMethod = new PaymentPix(); 
+
+            decimal totalValue = order.FinishOrder(paymentMethod);
+
+            
+            Console.WriteLine($"Customer: {customer.Name}");
+            Console.WriteLine($"Total order: {totalValue:C}");
         }
     }
 }

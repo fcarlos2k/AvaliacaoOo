@@ -7,12 +7,12 @@ using AvaliacaoOo.Interfaces;
 
 namespace AvaliacaoOo.PaymentMethod
 {
-    public class CreditCard :IPaymentMethod
+    public class PaymentCreditCard : IPaymentMethod
     {
-        public decimal MakePayment(decimal totalValue)
+        public decimal CalculateFinalValue(decimal totalValue)
         {
             
-            return totalValue * 1.1m;
+            return totalValue;
         }
     }
 }

@@ -8,7 +8,6 @@ namespace AvaliacaoOo.Interfaces
 {
     public interface IPaymentMethod
     {
-        decimal MakePayment(decimal totalValue);
-
+        decimal CalculateFinalValue(decimal totalValue);
     }
 }
