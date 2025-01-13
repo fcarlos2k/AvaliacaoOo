@@ -22,11 +22,22 @@ namespace AvaliacaoOo.Entities
         {
             decimal totalValue = 0;
 
-            foreach (var item in Itens)
+            if (paymentMethod == null || Itens == null || Itens.Count == 0)
             {
-                totalValue += item.product.Price * item.qtd;
+                return 0;
             }
-            return paymentMethod.CalculateFinalValue(totalValue);
+            else
+            {
+                foreach (var item in Itens)
+                {
+                    totalValue += item.product.Price * item.qtd;
+                    if (item.qtd == 0)
+                    {
+                        return 0;
+                    }
+                }
+                return paymentMethod.CalculateFinalValue(totalValue);
+            }
         }
     }
 }
