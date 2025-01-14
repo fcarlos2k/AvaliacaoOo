@@ -13,13 +13,13 @@ namespace AvaliacaoOo
 
             var order = new Order(customer);
 
-            order.Itens.Add((new Product (1, "Produto A", 200), 0));
+            order.Itens.Add((new Product (1, "Produto A", 200), 5));
             order.Itens.Add((new Product (2, "Produto B", 1000),1));
-            order.Itens.Add((new Product (3, "Produto C", 0),0)); 
+            order.Itens.Add((new Product (3, "Produto C", 100),1)); 
 
 
-            IPaymentMethod paymentMethod = new PaymentPix();
-            //IPaymentMethod paymentMethod = new PaymentCreditCard();
+            //IPaymentMethod paymentMethod = new PaymentPix();
+            IPaymentMethod paymentMethod = new PaymentCreditCard();
 
             decimal totalValue = order.FinishOrder(paymentMethod);
 
