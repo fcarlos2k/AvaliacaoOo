@@ -11,6 +11,10 @@ namespace AvaliacaoOo.PaymentMethod
     {
         public decimal CalculateFinalValue(decimal totalValue)
         {
+            if (totalValue <= 0 || totalValue == null)
+            {
+                return 0;
+            }
             return totalValue * 0.95m;
         }
     }

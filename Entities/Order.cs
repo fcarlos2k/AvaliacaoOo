@@ -31,7 +31,7 @@ namespace AvaliacaoOo.Entities
                 foreach (var item in Itens)
                 {
                     totalValue += item.product.Price * item.qtd;
-                    if (item.qtd == 0)
+                    if (item.qtd == 0 || item.product.Price <= 0)
                     {
                         return 0;
                     }
