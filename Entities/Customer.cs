@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 
 namespace AvaliacaoOo.Entities
 {
-    internal class Customer
+    public class Customer
     {
-        int Id { get; set; }
-        string Name { get; set; }
+        public int Id { get; private set; }
+        public string Name { get; private set; }
 
         public Customer(int id, string name)
         {
             Id = id;
             Name = name;
-        }
-
-        public Customer()
-        {           
         }
     }
 }
