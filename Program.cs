@@ -9,27 +9,30 @@ namespace AvaliacaoOo
     {
         static void Main(string[] args)
         {
-            var customer = new Customer(1, "Customer 01"); 
-
-            var order = new Order(customer);
-
-            order.Itens.Add((new Product (1, "Produto A", 200), 5));
-            order.Itens.Add((new Product (2, "Produto B", 900),1));
-            order.Itens.Add((new Product (3, "Produto C", 100),1)); 
-
-
-            IPaymentMethod paymentMethod = new PaymentPix();
-            //IPaymentMethod paymentMethod = new PaymentCreditCard();
-
-            decimal totalValue = order.FinishOrder(paymentMethod);
-
-            if (totalValue == 0)
+            try
             {
-                Console.WriteLine("Order not finished");
-                return;
+                var customer = new Customer(1, "Customer 01");
+
+                var order = new Order(customer);
+
+                order.Itens.Add((new Product(1, "Produto A", 100), 1));
+                order.Itens.Add((new Product(2, "Produto B", 100), 1));
+                //order.Itens.Add((new Product(3, "Produto C", 100), 1));
+
+
+                IPaymentMethod paymentMethod = new PaymentPix();
+                //IPaymentMethod paymentMethod = new PaymentCreditCard();
+
+                decimal totalValue = order.FinishOrder(paymentMethod);
+
+                Console.WriteLine($"Customer: {customer.Name}");
+                Console.WriteLine($"Total order: {totalValue:C}");
             }
-            Console.WriteLine($"Customer: {customer.Name}");
-            Console.WriteLine($"Total order: {totalValue:C}");
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
         }
     }
 }

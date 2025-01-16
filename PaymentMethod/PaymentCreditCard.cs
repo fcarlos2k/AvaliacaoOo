@@ -11,9 +11,9 @@ namespace AvaliacaoOo.PaymentMethod
     {
         public decimal CalculateFinalValue(decimal totalValue)
         {
-            if (totalValue <= 0 || totalValue == null)
+            if (totalValue <= 0)
             {
-                return 0;
+                throw new Exception("The total itens must be greater than zero or positive (Err.: 3).");
             }
             return totalValue;
         }

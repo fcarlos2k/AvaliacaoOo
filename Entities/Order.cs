@@ -4,13 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AvaliacaoOo.Interfaces;
+using Xunit.Sdk;
 
 namespace AvaliacaoOo.Entities
 {
     public class Order
     {
-        public Customer Customer { get; set; }
-        public List<(Product product, int qtd)> Itens { get; set; }
+        public Customer Customer { get; private set; }
+        public List<(Product product, int qtd)> Itens { get; private set; }
 
         public Order(Customer customer)
         {
@@ -24,20 +25,21 @@ namespace AvaliacaoOo.Entities
 
             if (paymentMethod == null || Itens == null || Itens.Count == 0)
             {
-                return 0;
+                //return 0;
+                throw new Exception("The total itens must be greater than zero or positive (Err.: 1).");
             }
-            else
+
+            foreach (var item in Itens)
             {
-                foreach (var item in Itens)
+                totalValue += item.product.Price * item.qtd;
+                if (item.qtd == 0 || item.product.Price <= 0)
                 {
-                    totalValue += item.product.Price * item.qtd;
-                    if (item.qtd == 0 || item.product.Price <= 0)
-                    {
-                        return 0;
-                    }
+                    //return 0;
+                    throw new Exception("The total itens must be greater than zero or positive (Err.: 2).");
                 }
-                return paymentMethod.CalculateFinalValue(totalValue);
             }
+            
+            return paymentMethod.CalculateFinalValue(totalValue);
         }
     }
 }
