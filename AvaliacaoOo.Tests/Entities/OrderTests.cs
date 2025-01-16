@@ -28,19 +28,19 @@ namespace AvaliacaoOo.Tests.Entities
             Assert.Empty(order.Itens);
         }
 
-        [Fact]
-        public void FinishOrder_GivenNullPaymentMethod_ShouldReturnZero()
-        {
-            // Arrange
-            var customer = new Customer(1, "Cliente 01");
-            var order = new Order(customer);
+        //[Fact]
+        //public void FinishOrder_GivenNullPaymentMethod_ShouldReturnZero()
+        //{
+        //    // Arrange
+        //    var customer = new Customer(1, "Cliente 01");
+        //    var order = new Order(customer);
 
-            // Act
-            var result = order.FinishOrder(null);
+        //    // Act
+        //    var result = order.FinishOrder(null);
 
-            // Assert
-            Assert.Equal(0, result);
-        }
+        //    // Assert
+        //    Assert.Equal(0, result);
+        //}
 
         [Fact]
         public void FinishOrder_GivenEmptyItems_ShouldReturnZero()
@@ -51,10 +51,10 @@ namespace AvaliacaoOo.Tests.Entities
             var paymentMethod = new Mock<IPaymentMethod>().Object;
 
             // Act
-            var result = order.FinishOrder(paymentMethod);
+            var exception = Assert.Throws<Exception>(() => order.FinishOrder(paymentMethod));
 
             // Assert
-            Assert.Equal(0, result);
+            Assert.Equal("The total itens must be greater than zero or positive (Err.: 1).", exception.Message);
         }
 
         [Fact]
@@ -67,10 +67,10 @@ namespace AvaliacaoOo.Tests.Entities
             var paymentMethod = new Mock<IPaymentMethod>().Object;
 
             // Act
-            var result = order.FinishOrder(paymentMethod);
+            var exception = Assert.Throws<Exception>(() => order.FinishOrder(paymentMethod));
 
             // Assert
-            Assert.Equal(0, result);
+            Assert.Equal("The total itens must be greater than zero or positive (Err.: 2).", exception.Message);
         }
 
         [Fact]

@@ -15,8 +15,8 @@ namespace AvaliacaoOo
 
                 var order = new Order(customer);
 
-                order.Itens.Add((new Product(1, "Produto A", 100), 1));
-                order.Itens.Add((new Product(2, "Produto B", 100), 1));
+                order.Itens.Add((new Product(1, "Produto A", 100), 0));
+                //order.Itens.Add((new Product(2, "Produto B", 100), 1));
                 //order.Itens.Add((new Product(3, "Produto C", 100), 1));
 
 

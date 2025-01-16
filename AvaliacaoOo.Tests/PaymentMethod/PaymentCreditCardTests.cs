@@ -30,9 +30,10 @@ namespace AvaliacaoOo.Tests.PaymentMethod
             var paymentCreditCard = new PaymentCreditCard();
             decimal totalValue = 0m;
             // Act
-            var result = paymentCreditCard.CalculateFinalValue(totalValue);
-            // Assert
-            Assert.Equal(0m, result);
+            var exception = Assert.Throws<Exception>(() => paymentCreditCard.CalculateFinalValue(totalValue));
+
+            // Verificar a mensagem da exceção
+            Assert.Equal("The total itens must be greater than zero or positive (Err.: 3).", exception.Message);
         }
 
         [Fact]
@@ -43,9 +44,10 @@ namespace AvaliacaoOo.Tests.PaymentMethod
             decimal totalValue = -100m;
             decimal expectedValue = 0m;
             // Act
-            var result = paymentCreditCard.CalculateFinalValue(totalValue);
+            var exception = Assert.Throws<Exception>(() => paymentCreditCard.CalculateFinalValue(totalValue));
+
             // Assert
-            Assert.Equal(expectedValue, result);
+            Assert.Equal("The total itens must be greater than zero or positive (Err.: 3).", exception.Message);
         }
     }
 }

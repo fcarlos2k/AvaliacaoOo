@@ -33,10 +33,10 @@ namespace AvaliacaoOo.Tests.PaymentMethod
             decimal totalValue = 0m;
 
             // Act
-            var result = paymentPix.CalculateFinalValue(totalValue);
+            var exception = Assert.Throws<Exception>(() => paymentPix.CalculateFinalValue(totalValue));
 
-            // Assert
-            Assert.Equal(0m, result);
+            //Assert
+            Assert.Equal("The total itens must be greater than zero or positive (Err.: 4).", exception.Message);
         }
 
         [Fact]
@@ -48,10 +48,10 @@ namespace AvaliacaoOo.Tests.PaymentMethod
             decimal expectedValue = 0;
 
             // Act
-            var result = paymentPix.CalculateFinalValue(totalValue);
+            var exception = Assert.Throws<Exception>(() => paymentPix.CalculateFinalValue(totalValue));
 
             // Assert
-            Assert.Equal(expectedValue, result);
+            Assert.Equal("The total itens must be greater than zero or positive (Err.: 4).", exception.Message);
         }
 
 
